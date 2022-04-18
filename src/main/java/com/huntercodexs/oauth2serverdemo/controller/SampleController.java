@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${api.prefix}")
-public class WelcomeController {
+public class SampleController {
 
     @GetMapping(value = "/welcome")
     public ResponseEntity<?> welcome() {

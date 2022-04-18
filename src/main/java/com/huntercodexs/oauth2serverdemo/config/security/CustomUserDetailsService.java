@@ -35,10 +35,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 				true,
 				AuthorityUtils.NO_AUTHORITIES);
 
-		log.debug("CustomUserDetailsService->loadUserByUsername STARTED");
-		log.debug("username: " + username);
-		log.debug("LoggedOperator: " + loggedOperator);
-		log.debug("CustomUserDetailsService->loadUserByUsername[UserDetails]: " + user);
+		log.debug(">>> CustomUserDetailsService->loadUserByUsername STARTED");
+		log.debug(">>> username: " + username);
+		log.debug(">>> LoggedOperator: " + loggedOperator);
+		log.debug(">>> CustomUserDetailsService->loadUserByUsername[UserDetails]: " + user);
 
 		if (user.getUsername().equals("") || !user.isEnabled()) {
 
@@ -54,7 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 					AuthorityUtils.NO_AUTHORITIES);
 		}
 
-		log.debug("CustomUserDetailsService->loadUserByUsername FINISHED");
+		log.debug(">>> CustomUserDetailsService->loadUserByUsername FINISHED");
 
 		return loggedOperator;
 
@@ -89,9 +89,20 @@ public class CustomUserDetailsService implements UserDetailsService {
 		this.passwordCred = passwordCred;
 		this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
 
-		log.debug("CustomUserDetailsService->setUserRoles");
-		log.debug("ROLES: " + roles);
-		log.debug("this.authorities: " + this.authorities);
+		log.debug(">>> CustomUserDetailsService->setUserRoles");
+		log.debug(">>> ROLES: " + roles);
+		log.debug(">>> this.authorities: " + this.authorities);
+	}
+
+	public void setUserCredentialsFromDatabase(String userRole, String usernameCred, String passwordCred) {
+
+		this.usernameCred = usernameCred;
+		this.passwordCred = passwordCred;
+		this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(userRole);
+
+		log.debug(">>> CustomUserDetailsService->setUserRoles");
+		log.debug(">>> ROLE: " + userRole);
+		log.debug(">>> this.authorities: " + this.authorities);
 	}
 
 }

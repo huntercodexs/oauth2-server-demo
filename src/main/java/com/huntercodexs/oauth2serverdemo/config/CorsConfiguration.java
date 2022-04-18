@@ -20,7 +20,7 @@ public class CorsConfiguration implements  WebMvcConfigurer  {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 
-		log.debug("ADD CORS MAPPING STARTED");
+		log.debug(">>> ADD CORS MAPPING STARTED");
 
 		registry.addMapping("/**")
 			//.allowedOrigins(getOrigin())
@@ -34,7 +34,7 @@ public class CorsConfiguration implements  WebMvcConfigurer  {
 			.maxAge(4800);
 
 		log.debug(registry.toString());
-		log.debug("ADD CORS MAPPING FINISHED");
+		log.debug(">>> ADD CORS MAPPING FINISHED");
 
 	}
 	

@@ -76,7 +76,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         handler.setClientDetailsService(customClientDetailsService);
 
         log.debug("userApprovalHandler: AuthorizationServerConfig");
-        log.debug("handler: " + handler);
 
         return handler;
     }
@@ -92,15 +91,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authenticationManager(customAuthenticationManager)
                 .userDetailsService(customUserDetailsService);
 
-        log.debug("CONFIGURE 1: AuthorizationServerConfig");
-        log.debug("endpoints: " + endpoints);
+        log.debug(">>> public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.withClientDetails(customClientDetailsService);
 
-        log.debug("CONFIGURE 2: AuthorizationServerConfig");
+        log.debug(">>> public void configure(ClientDetailsServiceConfigurer clients) throws Exception {");
     }
 
     @Override
@@ -112,7 +110,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .checkTokenAccess("isAuthenticated()")
                 .passwordEncoder(this.passwordEncoder);
 
-        log.debug("CONFIGURE 3: AuthorizationServerConfig");
+        log.debug(">>> public void configure(AuthorizationServerSecurityConfigurer security) {");
     }
     
     @Configuration
@@ -124,7 +122,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     	   http.authorizeRequests()
                    .antMatchers("/huntercodexs/**").permitAll().anyRequest().authenticated();
 
-           log.debug("CONFIGURE 4: ResourceServerConfiguration");
+           log.debug(">>> public void configure(final HttpSecurity http) throws Exception {");
 
        }
        

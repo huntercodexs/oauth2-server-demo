@@ -23,7 +23,8 @@ public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 
-        log.debug("CORS FILTER STARTED");
+        log.debug("-------------------------------------------------------------------------------------------------");
+        log.debug(">>> CORS FILTER STARTED");
 
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
@@ -36,14 +37,14 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-            log.debug("OPTIONS.equalsIgnoreCase");
+            log.debug(">>> OPTIONS.equalsIgnoreCase");
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            log.debug("chain.doFilter(req, res)");
+            log.debug(">>> chain.doFilter(req, res)");
             chain.doFilter(req, res);
         }
 
-        log.debug("CORS FILTER FINISHED");
+        log.debug(">>> CORS FILTER FINISHED");
 
     }
 

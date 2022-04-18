@@ -12,10 +12,10 @@ public class LoggedOperator extends User {
 	public LoggedOperator(String usernameCred, String passwordCred, List<GrantedAuthority> authorities) {
 		super(usernameCred, passwordCred, authorities);
 
-		log.debug("CONSTRUCTOR: LoggedOperator");
-		log.debug("usernameCred: " + usernameCred);
-		log.debug("passwordCred: " + passwordCred);
-		log.debug("authorities: " + authorities);
+		log.debug(">>> CONSTRUCTOR: LoggedOperator");
+		log.debug(">>> usernameCred: " + usernameCred);
+		log.debug(">>> passwordCred: " + passwordCred);
+		log.debug(">>> authorities: " + authorities);
 	}
 
 }

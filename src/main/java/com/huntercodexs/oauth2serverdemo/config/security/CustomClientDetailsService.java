@@ -46,13 +46,13 @@ public class CustomClientDetailsService implements ClientDetailsService {
 
         details.setAuthorities(authorities);
 
-        log.debug("CustomClientDetailsService->loadClientByClientId STARTED");
-        log.debug("CLIENT-ID: " + clientId);
-        log.debug("OauthClientEntity: " + oauthClientEntity);
-        log.debug("secret: " + secret);
-        log.debug("authorities: " + authorities);
-        log.debug("details: " + details);
-        log.debug("CustomClientDetailsService->loadClientByClientId FINISHED");
+        log.debug(">>> CustomClientDetailsService->loadClientByClientId STARTED");
+        log.debug(">>> CLIENT-ID: " + clientId);
+        log.debug(">>> OauthClientEntity: " + oauthClientEntity);
+        log.debug(">>> secret: " + secret);
+        log.debug(">>> authorities: " + authorities);
+        log.debug(">>> details: " + details);
+        log.debug(">>> CustomClientDetailsService->loadClientByClientId FINISHED");
 
         return details;
 	}
