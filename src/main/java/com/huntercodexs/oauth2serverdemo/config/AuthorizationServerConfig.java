@@ -93,7 +93,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(customUserDetailsService);
 
         log.debug("CONFIGURE 1: AuthorizationServerConfig");
-        log.debug("endpoints: " + endpoints.toString());
+        log.debug("endpoints: " + endpoints);
     }
 
     @Override
@@ -101,8 +101,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.withClientDetails(customClientDetailsService);
 
         log.debug("CONFIGURE 2: AuthorizationServerConfig");
-        log.debug("clients: " + clients.toString());
-        log.debug("clients.inMemory: " + clients.inMemory().toString());
     }
 
     @Override
@@ -115,7 +113,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .passwordEncoder(this.passwordEncoder);
 
         log.debug("CONFIGURE 3: AuthorizationServerConfig");
-        log.debug("security: " + security.toString());
     }
     
     @Configuration
@@ -125,10 +122,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
        public void configure(final HttpSecurity http) throws Exception {
 
     	   http.authorizeRequests()
-                   .antMatchers("/**").permitAll().anyRequest().authenticated();
+                   .antMatchers("/huntercodexs/**").permitAll().anyRequest().authenticated();
 
            log.debug("CONFIGURE 4: ResourceServerConfiguration");
-           log.debug(http.toString());
 
        }
        
