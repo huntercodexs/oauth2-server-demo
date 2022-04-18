@@ -25,12 +25,12 @@ import org.springframework.security.oauth2.provider.request.DefaultOAuth2Request
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
-@SuppressWarnings("deprecation")
+@Slf4j
 @Configuration
 @EnableWebSecurity
-@EnableAuthorizationServer
 @EnableResourceServer
-@Slf4j
+@EnableAuthorizationServer
+@SuppressWarnings("deprecation")
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Value("${oauth.server.custom.endpoint}")
@@ -125,7 +125,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
        public void configure(final HttpSecurity http) throws Exception {
 
     	   http.authorizeRequests()
-                   .antMatchers("/huntercodexs/**").permitAll().anyRequest().authenticated();
+                   .antMatchers("/**").permitAll().anyRequest().authenticated();
 
            log.debug("CONFIGURE 4: ResourceServerConfiguration");
            log.debug(http.toString());
