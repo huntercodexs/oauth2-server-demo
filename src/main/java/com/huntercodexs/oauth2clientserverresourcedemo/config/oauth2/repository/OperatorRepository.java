@@ -1,6 +1,6 @@
-package com.huntercodexs.oauth2serverdemo.repository;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.repository;
 
-import com.huntercodexs.oauth2serverdemo.model.OperatorEntity;
+import com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.model.OperatorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

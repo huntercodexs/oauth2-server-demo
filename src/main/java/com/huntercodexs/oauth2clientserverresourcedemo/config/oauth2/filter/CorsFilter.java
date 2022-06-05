@@ -1,30 +1,19 @@
-package com.huntercodexs.oauth2serverdemo.config;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.filter;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-@Slf4j
-@Order(Ordered.HIGHEST_PRECEDENCE)
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-
-        log.debug("-------------------------------------------------------------------------------------------------");
-        log.debug(">>> CORS FILTER STARTED");
 
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
@@ -37,14 +26,10 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
-            log.debug(">>> OPTIONS.equalsIgnoreCase");
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            log.debug(">>> chain.doFilter(req, res)");
             chain.doFilter(req, res);
         }
-
-        log.debug(">>> CORS FILTER FINISHED");
 
     }
 

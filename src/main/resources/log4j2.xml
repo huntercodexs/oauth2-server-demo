@@ -12,8 +12,8 @@
         </Console>
 
         <!-- Rolling File Appender -->
-        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="/home/jereelton/logs/OAUTH2-SERVER-DEMO.log"
-                     filePattern="/home/jereelton/logs/OAUTH2-SERVER-DEMO-%d{yyyy-MM-dd}-%i.log">
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="/home/jereelton/logs/OAUTH2-CLIENT-SERVER-RESOURCE-DEMO.log"
+                     filePattern="/home/jereelton/logs/OAUTH2-CLIENT-SERVER-RESOURCE-DEMO-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
                 <Pattern>${LOG_PATTERN}</Pattern>
             </PatternLayout>
@@ -27,7 +27,7 @@
     </Appenders>
 
     <Loggers>     
-        <AsyncLogger name="com.huntercodexs.oauth2serverdemo" level="debug" additivity="false">
+        <AsyncLogger name="com.huntercodexs.oauth2clientserverresourcedemo" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender" />                     
             <AppenderRef ref="RollingRandomAccessFile" />
         </AsyncLogger>

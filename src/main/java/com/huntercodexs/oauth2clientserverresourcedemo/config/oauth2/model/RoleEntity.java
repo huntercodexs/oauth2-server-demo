@@ -1,4 +1,4 @@
-package com.huntercodexs.oauth2serverdemo.model;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,5 @@
-package com.huntercodexs.oauth2serverdemo.config;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.filter;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -11,17 +10,13 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@Slf4j
 public class CorsConfiguration implements  WebMvcConfigurer  {
 	
-	@Value("#{'${cors.allowed.origins}'.split(',')}")
+	@Value("#{'${cors.allowed.origins:*}'.split(',')}")
 	private List<String> rawOrigins;	
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-
-		log.debug(">>> ADD CORS MAPPING STARTED");
-
 		registry.addMapping("/**")
 			//.allowedOrigins(getOrigin())
 			.allowedOrigins("*")
@@ -32,19 +27,13 @@ public class CorsConfiguration implements  WebMvcConfigurer  {
 			//.exposedHeaders("custom-header1", "custom-header2")
 			.allowCredentials(true)
 			.maxAge(4800);
-
-		log.debug(registry.toString());
-		log.debug(">>> ADD CORS MAPPING FINISHED");
-
 	}
 	
 	public String[] getOrigin() {
-
 	    int size = rawOrigins.size();
 	    String[] originArray = new String[size];
 
 		return rawOrigins.toArray(originArray);
-
 	}	
 	
 }

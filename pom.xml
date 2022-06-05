@@ -10,11 +10,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.huntercodexs.oauth2serverdemo</groupId>
-	<artifactId>OAUTH2-SERVER-DEMO</artifactId>
+	<groupId>com.huntercodexs.oauth2clientserverresourcedemo</groupId>
+	<artifactId>OAUTH2-CLIENT-SERVER-RESOURCE-DEMO</artifactId>
 	<version>21.04.1-SNAPSHOT</version>
-	<name>OAUTH2-SERVER-DEMO</name>
-	<description>OAUTH2-SERVER-DEMO</description>
+	<name>OAUTH2-CLIENT-SERVER-RESOURCE-DEMO</name>
+	<description>OAUTH2-CLIENT-SERVER-RESOURCE-DEMO</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

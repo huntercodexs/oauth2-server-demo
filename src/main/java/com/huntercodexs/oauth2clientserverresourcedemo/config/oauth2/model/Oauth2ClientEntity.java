@@ -1,14 +1,16 @@
-package com.huntercodexs.oauth2serverdemo.model;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class OauthClientEntity {
+public class Oauth2ClientEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

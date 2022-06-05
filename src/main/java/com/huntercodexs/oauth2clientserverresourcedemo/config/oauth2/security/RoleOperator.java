@@ -1,4 +1,4 @@
-package com.huntercodexs.oauth2serverdemo.config.security;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security;
 
 public enum RoleOperator {
     ROLE_USER,

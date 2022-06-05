@@ -1,6 +1,5 @@
-package com.huntercodexs.oauth2serverdemo.config.security;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -11,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.huntercodexs.oauth2serverdemo.config.security.RoleOperator.*;
-
 @Service
-@Slf4j
 public class CustomUserDetailsService implements UserDetailsService {
 
 	private String usernameCred;
@@ -35,15 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 				true,
 				AuthorityUtils.NO_AUTHORITIES);
 
-		log.debug(">>> CustomUserDetailsService->loadUserByUsername STARTED");
-		log.debug(">>> username: " + username);
-		log.debug(">>> LoggedOperator: " + loggedOperator);
-		log.debug(">>> CustomUserDetailsService->loadUserByUsername[UserDetails]: " + user);
-
 		if (user.getUsername().equals("") || !user.isEnabled()) {
-
-			log.warn("CustomUserDetailsService->loadUserByUsername: user.getUsername().equals('') || !user.isEnabled()");
-
 			return new User(
 					user.getUsername(),
 					user.getPassword(),
@@ -53,8 +41,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 					user.isAccountNonLocked(),
 					AuthorityUtils.NO_AUTHORITIES);
 		}
-
-		log.debug(">>> CustomUserDetailsService->loadUserByUsername FINISHED");
 
 		return loggedOperator;
 
@@ -66,19 +52,19 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		switch (userLevel) {
 			case 0:
-				roles = ROLE_ADMIN.name();
+				roles = RoleOperator.ROLE_ADMIN.name();
 				break;
 			case 1:
-				roles = ROLE_USER.name();
+				roles = RoleOperator.ROLE_USER.name();
 				break;
 			case 2:
-				roles = ROLE_CLIENT.name();
+				roles = RoleOperator.ROLE_CLIENT.name();
 				break;
 			case 3:
-				roles = ROLE_OPERATOR.name();
+				roles = RoleOperator.ROLE_OPERATOR.name();
 				break;
 			case 4:
-				roles = ROLE_MODERATOR.name();
+				roles = RoleOperator.ROLE_MODERATOR.name();
 				break;
 			default:
 				roles = "";
@@ -88,21 +74,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 		this.usernameCred = usernameCred;
 		this.passwordCred = passwordCred;
 		this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
-
-		log.debug(">>> CustomUserDetailsService->setUserRoles");
-		log.debug(">>> ROLES: " + roles);
-		log.debug(">>> this.authorities: " + this.authorities);
 	}
 
 	public void setUserCredentialsFromDatabase(String userRole, String usernameCred, String passwordCred) {
-
 		this.usernameCred = usernameCred;
 		this.passwordCred = passwordCred;
 		this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(userRole);
-
-		log.debug(">>> CustomUserDetailsService->setUserRoles");
-		log.debug(">>> ROLE: " + userRole);
-		log.debug(">>> this.authorities: " + this.authorities);
 	}
 
 }

@@ -1,9 +1,9 @@
-package com.huntercodexs.oauth2serverdemo.config;
+package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.filter;
 
+import com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security.CustomAuthenticationManager;
+import com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security.CustomClientDetailsService;
+import com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security.CustomUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
-import com.huntercodexs.oauth2serverdemo.config.security.CustomAuthenticationManager;
-import com.huntercodexs.oauth2serverdemo.config.security.CustomClientDetailsService;
-import com.huntercodexs.oauth2serverdemo.config.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -56,33 +56,27 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-        log.debug("PasswordEncoder: AuthorizationServerConfig");
 		return NoOpPasswordEncoder.getInstance();
 	}
 	
     @Bean
     public TokenStore tokenStore() {
-        log.debug("tokenStore: AuthorizationServerConfig");
         return new InMemoryTokenStore();
     }
     
     @Bean
     @Autowired
     public UserApprovalHandler userApprovalHandler(TokenStore tokenStore) {
-
         TokenStoreUserApprovalHandler handler = new TokenStoreUserApprovalHandler();
         handler.setTokenStore(tokenStore);
         handler.setRequestFactory(new DefaultOAuth2RequestFactory(customClientDetailsService));
         handler.setClientDetailsService(customClientDetailsService);
-
-        log.debug("userApprovalHandler: AuthorizationServerConfig");
 
         return handler;
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
         endpoints
                 .pathMapping("/oauth/token", oauth2CustomEndpoint+"/token" )
                 .pathMapping("/oauth/check_token", oauth2CustomEndpoint+"/check_token")
@@ -90,39 +84,43 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userApprovalHandler(this.userApprovalHandler)
                 .authenticationManager(customAuthenticationManager)
                 .userDetailsService(customUserDetailsService);
-
-        log.debug(">>> public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.withClientDetails(customClientDetailsService);
-
-        log.debug(">>> public void configure(ClientDetailsServiceConfigurer clients) throws Exception {");
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
-
         security
                 .allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
                 .passwordEncoder(this.passwordEncoder);
-
-        log.debug(">>> public void configure(AuthorizationServerSecurityConfigurer security) {");
     }
     
     @Configuration
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+        @Value("${api.prefix}")
+        private String apiPrefix;
+
        @Override
        public void configure(final HttpSecurity http) throws Exception {
-
-    	   http.authorizeRequests()
-                   .antMatchers("/huntercodexs/**").permitAll().anyRequest().authenticated();
-
-           log.debug(">>> public void configure(final HttpSecurity http) throws Exception {");
+           http.authorizeRequests()
+                   /*Main Services*/
+                   .antMatchers(apiPrefix+"/products").authenticated()
+                   /*Others Services*/
+                   .antMatchers(apiPrefix+"/samples").authenticated()
+                   /*Open Services*/
+                   .antMatchers(apiPrefix+"/welcome").permitAll()
+                   /*Swagger*/
+                   .antMatchers("/swagger-ui/**").permitAll()
+                   .antMatchers("/api-docs/**").permitAll()
+                   .antMatchers("/api-docs.yaml").permitAll()
+                   /*Actuator*/
+                   .antMatchers("/actuator/**").permitAll().anyRequest().authenticated();
 
        }
        
