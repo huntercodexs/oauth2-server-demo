@@ -1,5 +1,7 @@
-package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.filter;
+package com.huntercodexs.oauth2serverdemo.config.cors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -10,9 +12,11 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-public class CorsConfiguration implements  WebMvcConfigurer  {
+public class CorsConfig implements  WebMvcConfigurer  {
+
+	private final Logger LOGGER = LoggerFactory.getLogger(CorsConfig.class);
 	
-	@Value("#{'${cors.allowed.origins:*}'.split(',')}")
+	@Value("#{'${cors.allowed.origins}'.split(',')}")
 	private List<String> rawOrigins;	
 	
 	@Override
@@ -30,9 +34,8 @@ public class CorsConfiguration implements  WebMvcConfigurer  {
 	}
 	
 	public String[] getOrigin() {
-	    int size = rawOrigins.size();
+		int size = rawOrigins.size();
 	    String[] originArray = new String[size];
-
 		return rawOrigins.toArray(originArray);
 	}	
 	

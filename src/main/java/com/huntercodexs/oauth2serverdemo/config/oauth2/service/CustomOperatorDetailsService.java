@@ -1,5 +1,8 @@
-package com.huntercodexs.oauth2clientserverresourcedemo.config.oauth2.security;
+package com.huntercodexs.oauth2serverdemo.config.oauth2.service;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -11,7 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+@Slf4j
+public class CustomOperatorDetailsService implements UserDetailsService {
+
+	private final Logger LOGGER = LoggerFactory.getLogger(CustomClientDetailsService.class);
 
 	private String usernameCred;
 	private String passwordCred;
@@ -19,61 +25,32 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
 		LoggedOperator loggedOperator = new LoggedOperator(this.usernameCred, this.passwordCred, this.authorities);
 
-		UserDetails user = new User(
+		UserDetails userDetails = new User(
 				username,
 				loggedOperator.getPassword(),
 				true,
-				true,
-				true,
-				true,
-				AuthorityUtils.NO_AUTHORITIES);
+				false,
+				false,
+				false,
+				this.authorities);
 
-		if (user.getUsername().equals("") || !user.isEnabled()) {
+		if (!loggedOperator.isAccountNonExpired() || !loggedOperator.isCredentialsNonExpired() || !loggedOperator.isAccountNonLocked()) {
+
 			return new User(
-					user.getUsername(),
-					user.getPassword(),
-					!user.isEnabled(),
-					user.isAccountNonExpired(),
-					user.isCredentialsNonExpired(),
-					user.isAccountNonLocked(),
+					this.usernameCred,
+					this.passwordCred,
+					false,
+					true,
+					true,
+					true,
 					AuthorityUtils.NO_AUTHORITIES);
-		}
-
-		return loggedOperator;
-
-	}
-
-	public void setUserCredentials(int userLevel, String usernameCred, String passwordCred) {
-
-		String roles;
-
-		switch (userLevel) {
-			case 0:
-				roles = RoleOperator.ROLE_ADMIN.name();
-				break;
-			case 1:
-				roles = RoleOperator.ROLE_USER.name();
-				break;
-			case 2:
-				roles = RoleOperator.ROLE_CLIENT.name();
-				break;
-			case 3:
-				roles = RoleOperator.ROLE_OPERATOR.name();
-				break;
-			case 4:
-				roles = RoleOperator.ROLE_MODERATOR.name();
-				break;
-			default:
-				roles = "";
 
 		}
 
-		this.usernameCred = usernameCred;
-		this.passwordCred = passwordCred;
-		this.authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
+		return userDetails;
+
 	}
 
 	public void setUserCredentialsFromDatabase(String userRole, String usernameCred, String passwordCred) {

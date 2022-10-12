@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "09d798b7-48bc-4b3e-8fa5-a37fe0d9ef15",
+		"name": "OAUTH2-SERVER-DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19022303"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "cbfcc74b-07cd-4abb-906b-abddd8fa1bec",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client_id",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "OAUTH2DEMO_CLIENT",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567890",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "33100",
+					"path": [
+						"api",
+						"rest",
+						"oauth",
+						"v1",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "OAUTH2DEMO_USER",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567890",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "33100",
+							"path": [
+								"api",
+								"rest",
+								"oauth",
+								"v1",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, PUT, OPTIONS, DELETE"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Oct 2022 02:30:37 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"d3462419-2a45-47b7-bcf2-f576f706d3e9\",\n    \"token_type\": \"bearer\",\n    \"refresh_token\": \"91ba07cf-bf5e-43d1-bb79-70bc8f28fc3e\",\n    \"expires_in\": 3599,\n    \"scope\": \"read write\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic Y2xpZW50X2lkOmNiZmNjNzRiLTA3Y2QtNGFiYi05MDZiLWFiZGRkOGZhMWJlYw==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "8c1e965b-49f3-4017-bfaa-bd786659ef35",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/check_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "33100",
+					"path": [
+						"api",
+						"rest",
+						"oauth",
+						"v1",
+						"oauth",
+						"check_token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Check Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50X2lkOmNiZmNjNzRiLTA3Y2QtNGFiYi05MDZiLWFiZGRkOGZhMWJlYw==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "d3462419-2a45-47b7-bcf2-f576f706d3e9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/check_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "33100",
+							"path": [
+								"api",
+								"rest",
+								"oauth",
+								"v1",
+								"oauth",
+								"check_token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, PUT, OPTIONS, DELETE"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 08 Oct 2022 02:30:56 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"aud\": [\n        \"oauth2-resource\"\n    ],\n    \"user_name\": \"OAUTH2DEMO_USER\",\n    \"scope\": [\n        \"read\",\n        \"write\"\n    ],\n    \"active\": true,\n    \"exp\": 1665199837,\n    \"authorities\": [\n        \"ROLE_USER\"\n    ],\n    \"client_id\": \"client_id\"\n}"
+				},
+				{
+					"name": "Check Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50X2lkOmNiZmNjNzRiLTA3Y2QtNGFiYi05MDZiLWFiZGRkOGZhMWJlYw==",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "8c1e965b-49f3-4017-bfaa-bd786659ef35",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/check_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "33100",
+							"path": [
+								"api",
+								"rest",
+								"oauth",
+								"v1",
+								"oauth",
+								"check_token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "POST, GET, PUT, OPTIONS, DELETE"
+						},
+						{
+							"key": "Access-Control-Max-Age",
+							"value": "3600"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 00:04:23 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"aud\": [\n        \"oauth2-resource\"\n    ],\n    \"user_name\": \"OAUTH2DEMO_CLIENT\",\n    \"scope\": [\n        \"read\"\n    ],\n    \"active\": true,\n    \"exp\": 1665363853,\n    \"authorities\": [\n        \"ROLE_CLIENT\"\n    ],\n    \"client_id\": \"aws\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
