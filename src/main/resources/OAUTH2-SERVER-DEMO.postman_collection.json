@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "09d798b7-48bc-4b3e-8fa5-a37fe0d9ef15",
-		"name": "OAUTH2-SERVER-DEMO",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19022303"
+		"_postman_id": "8776039e-e895-4bba-8c7b-34b685bbdc6d",
+		"name": "JAVA - OAUTH2-SERVER-DEMO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -47,13 +46,15 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/token",
+					"raw": "http://localhost:33100/huntercodexs/server/api/rest/oauth/v1/oauth/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "33100",
 					"path": [
+						"huntercodexs",
+						"server",
 						"api",
 						"rest",
 						"oauth",
@@ -187,19 +188,21 @@
 					"urlencoded": [
 						{
 							"key": "token",
-							"value": "8c1e965b-49f3-4017-bfaa-bd786659ef35",
+							"value": "2ee96d71-8021-4454-8eb5-7678aa2dc188",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:33100/api/rest/oauth/v1/oauth/check_token",
+					"raw": "http://localhost:33100/huntercodexs/server/api/rest/oauth/v1/oauth/check_token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "33100",
 					"path": [
+						"huntercodexs",
+						"server",
 						"api",
 						"rest",
 						"oauth",
