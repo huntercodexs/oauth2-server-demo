@@ -1,7 +1,6 @@
 # OAUTH2 SERVER DEMO
 Just an authorization and authentication server
 
-----
 
 # Resources
 
@@ -10,7 +9,6 @@ Just an authorization and authentication server
 * Java 8 (jdk-8u212)
 * Spring Boot 2.0.1.RELEASE
 
-----
 
 # Dependencies
 
@@ -40,7 +38,6 @@ Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
 Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode)
 </pre>
 
----------------------------------------------------------------------------------------------------
 
 # Overview
 
@@ -81,7 +78,6 @@ Please, before starting this project have sure that the steps is already complet
 - Check if the Service Discovery is available to register
 - Use the postman file as support to make a tests
 
----------------------------------------------------------------------------------------------------
 
 # Postman
 
@@ -96,7 +92,6 @@ src/main/resources/OAUTH2-SERVER-DEMO.postman_collection.json
 - Check Token
   - http://localhost:33100/api/rest/oauth/v1/oauth/check_token
 
----------------------------------------------------------------------------------------------------
 
 # About the OAuth2
 
@@ -134,7 +129,6 @@ To perform authentication and authorization via OAUTH2, follow the instructions 
 
 14- Synchronize the token generated in the application environment by including the token in the Request Header
 
-------------------------------------------------------------------------------------------------------------------------
 
 > TIPS
 > 
@@ -153,8 +147,6 @@ To perform authentication and authorization via OAUTH2, follow the instructions 
 
 
 # Application/Client Enrollment
-
-------------------------------------------------------------------------------------------------------------------------
 
 The application/client must be registered in the OAuth2Server system using the following data/fields:
 
@@ -177,8 +169,6 @@ refreshTokenValiditySeconds: Refers to the expiration time of the access token r
 
 
 # Operator(Client/user) Enrollment
-
-------------------------------------------------------------------------------------------------------------------------
 
 To register the operator in the OAuth2Server system, it is necessary to have the following information:
 
@@ -205,14 +195,12 @@ status: Indicates whether the operator is active
 
 # Flow (Configuration)
 
-------------------------------------------------------------------------------------------------------------------------
-
 <pre>
 -> Run
-    -> AuthorizationServerConfig
-        -> CustomAuthenticationService
-        -> CustomClientDetailsService
-        -> CustomOperatorDetailsService
+    -> AuthorizationServerConfig.java
+        -> CustomAuthenticationService.java
+        -> CustomClientDetailsService.java
+        -> CustomOperatorDetailsService.java
 </pre>
 
 > INFO
@@ -237,13 +225,11 @@ status: Indicates whether the operator is active
 
 # Flow (Token Generate)
 
-------------------------------------------------------------------------------------------------------------------------
-
 <pre>
 -> Request
-    -> CustomClientDetailsService
-        -> CustomAuthenticationService
-            -> CustomOperatorDetailsService
+    -> CustomClientDetailsService.java
+        -> CustomAuthenticationService.java
+            -> CustomOperatorDetailsService.java
 </pre>
 
 > INFO
@@ -267,7 +253,7 @@ REQUEST: POST http://localhost:33100/api/rest/oauth/v1/oauth/token?grant_type:pa
 HEADER: Authorization: Y2xpZW50X2lkOmM0NDQ0NDQtMDdjZC0zMzMzLTIzNDYtYXpzZGQ4ZmExYmVj
 BODY: 
     grant_type:password
-    username:OAUTH2DEMO_USER1
+    username:OAUTH2DEMO_USER
     password:1234567890
 </pre>
 
@@ -322,11 +308,9 @@ used to renew the current token.
 
 # Flow (Token Validate)
 
-------------------------------------------------------------------------------------------------------------------------
-
 <pre>
 -> Request
-    -> CustomClientDetailsService
+    -> CustomClientDetailsService.java
 </pre>
 
 > INFO
